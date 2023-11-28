@@ -21,9 +21,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "app_threadx.h"
 #include "main.h"
-#include <array>
-#include <cstdint>
-#include <string>
+#include "Runtime.hpp"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -36,8 +34,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-static constexpr int THREAD_STACK_SIZE = 1024;
-TX_THREAD thread_ptr;
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -47,7 +44,7 @@ TX_THREAD thread_ptr;
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-std::array<uint8_t, THREAD_STACK_SIZE> thread_stack;
+//foundation::Runtime<1024> runtime;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -68,8 +65,7 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
   /* USER CODE END App_ThreadX_MEM_POOL */
 
   /* USER CODE BEGIN App_ThreadX_Init */
-  const std::string s("my");
-  tx_thread_create(&thread_ptr, const_cast<char*>(s.c_str()), my_thread_entry, 0x1234, thread_stack.data(), THREAD_STACK_SIZE, 15,15,1, TX_AUTO_START);
+  //foundation::Runtime::createThreads();
   /* USER CODE END App_ThreadX_Init */
   return ret;
 }
