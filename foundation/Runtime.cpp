@@ -7,7 +7,7 @@ foundation::Runtime::Runtime() {
         while (1)
         {
             /* USER CODE END WHILE */
-            HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_10);
+            //HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_10);
             tx_thread_sleep(20);
             /* USER CODE BEGIN 3 */
         }
