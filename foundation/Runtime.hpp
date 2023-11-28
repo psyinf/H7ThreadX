@@ -11,9 +11,11 @@ namespace foundation {
 
 class Runtime {
 
-    Runtime();
+public:
+    void createThreads();
     static constexpr int THREAD_STACK_SIZE = 1024;
     std::array<uint8_t, THREAD_STACK_SIZE> thread_stack;
+    std::array<uint8_t, THREAD_STACK_SIZE> thread_stack2;
     
 };
 
