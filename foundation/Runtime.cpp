@@ -44,6 +44,12 @@ private:
     ThreadStack stack;
 };
 
+template<typename...ValidValues>
+static void ErrorHandler(UINT result)
+{
+
+}
+
 class Mutex
 {
 public:
@@ -53,7 +59,22 @@ public:
 
     void lock() { tx_mutex_get(&mutex, TX_WAIT_FOREVER); }
 
-    bool try_lock() {}
+    bool try_lock()
+    {
+        // TODO: handle TX_MUTEX_ERROR and TX_WAIT_ERROR
+        auto ret = tx_mutex_get(&mutex, TX_NO_WAIT);
+        switch (ret)
+        {
+        case TX_SUCCESS:
+            return true;
+        case TX_NOT_AVAILABLE:
+            return false;
+        default:
+            break;
+        }
+    }
+
+    void release() { tx_mutex_put(&mutex); }
 
 private:
     TX_MUTEX mutex;
@@ -61,14 +82,16 @@ private:
 
 void foundation::Runtime::createThreads()
 {
+    static Mutex       ledLockPin;
     static auto my_thread_entry = +[](long unsigned int initial) {
         auto i = 5;
         while (i--)
         {
             /* USER CODE END WHILE */
+            ledLockPin.lock();
             HAL_GPIO_TogglePin(LED1_RGB_GPIO_Port, LED1_RGB_Pin);
             tx_thread_sleep(110);
-            tx_mutex_get
+            ledLockPin.release();
             /* USER CODE BEGIN 3 */
         }
     };
@@ -76,9 +99,10 @@ void foundation::Runtime::createThreads()
         while (1)
         {
             /* USER CODE END WHILE */
+            ledLockPin.lock();
             HAL_GPIO_TogglePin(LED3_RGB_GPIO_Port, LED3_RGB_Pin);
             tx_thread_sleep(210);
-
+            ledLockPin.release();
             /* USER CODE BEGIN 3 */
         }
     };
