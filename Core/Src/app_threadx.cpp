@@ -59,7 +59,16 @@ static void thread1_entry(ULONG thread_input)
 	while (true)
 	{
     HAL_GPIO_TogglePin(LED1_RGB_GPIO_Port, LED1_RGB_Pin);
-    tx_thread_sleep(1000);
+    tx_thread_sleep(10);
+  }
+}
+
+static void thread2_entry(ULONG thread_input)
+{
+  while (true)
+  {
+    HAL_GPIO_TogglePin(LED3_RGB_GPIO_Port, LED3_RGB_Pin);
+    tx_thread_sleep(10);
   }
 }
 
@@ -73,7 +82,8 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
   UINT ret = TX_SUCCESS;
   /* USER CODE BEGIN App_ThreadX_MEM_POOL */
 
-  auto thread1 = runtime.makeThread({}, thread1_entry);
+  runtime.makeThread("t1", {}, &thread1_entry);
+  runtime.makeThread("t2", {}, &thread2_entry);
   /* USER CODE END App_ThreadX_MEM_POOL */
 
   /* USER CODE BEGIN App_ThreadX_Init */

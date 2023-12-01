@@ -1,5 +1,5 @@
 #pragma once
-
+//from https : // github.com/m3janitha/FastString/blob/master/include/FastString.h
 #include <algorithm>
 #include <ostream>
 #include <string>
