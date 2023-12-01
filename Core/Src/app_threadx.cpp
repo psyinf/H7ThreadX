@@ -52,6 +52,17 @@ foundation::Runtime runtime;
 
 /* USER CODE END PFP */
 
+
+//FOR DEMO
+static void thread1_entry(ULONG thread_input)
+{
+	while (true)
+	{
+    HAL_GPIO_TogglePin(LED1_RGB_GPIO_Port, LED1_RGB_Pin);
+    tx_thread_sleep(1000);
+  }
+}
+
 /**
   * @brief  Application ThreadX Initialization.
   * @param memory_ptr: memory pointer
@@ -61,7 +72,8 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
 {
   UINT ret = TX_SUCCESS;
   /* USER CODE BEGIN App_ThreadX_MEM_POOL */
-  runtime.createThreads();
+
+  auto thread1 = runtime.makeThread({}, thread1_entry);
   /* USER CODE END App_ThreadX_MEM_POOL */
 
   /* USER CODE BEGIN App_ThreadX_Init */
