@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 project("H7ThreadX" C CXX ASM)
 
 include(cmake/st-project.cmake)
+add_subdirectory(Config)
 add_subdirectory(foundation)
 add_subdirectory(Middlewares)
 add_subdirectory(Drivers)
