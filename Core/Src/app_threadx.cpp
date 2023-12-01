@@ -49,7 +49,7 @@ foundation::Runtime runtime;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-VOID my_thread_entry(ULONG initial_input);
+
 /* USER CODE END PFP */
 
 /**
@@ -88,14 +88,4 @@ void MX_ThreadX_Init(void)
   /* USER CODE END  Kernel_Start_Error */
 }
 
-/* USER CODE BEGIN 1 */
-VOID my_thread_entry(ULONG initial_input)
-{
-	while (1)
-	{
-	    /* USER CODE END WHILE */
-		HAL_GPIO_TogglePin(LED1_RGB_GPIO_Port, LED1_RGB_Pin);
-		tx_thread_sleep(20);
-	    		/* USER CODE BEGIN 3 */
-	}
-}
+
