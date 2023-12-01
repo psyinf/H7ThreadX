@@ -154,3 +154,20 @@ using fixed_size_u16str = basic_str<char16_t, max_length>;
 template <std::size_t max_length>
 using fixed_size_u32str = basic_str<char32_t, max_length>;
 } // namespace fss
+
+template <std::size_t max_length>
+struct std::hash<fss::fixed_size_str<max_length>>
+{
+    std::size_t operator()(const fss::fixed_size_str<max_length>& k) const
+    {
+        using std::hash;
+        using std::size_t;
+        using std::string;
+
+        // Compute individual hash values for first,
+        // second and third and combine them using XOR
+        // and bit shifting:
+        return 0;
+        //return ((hash<string>()(k.first) ^ (hash<string>()(k.second) << 1)) >> 1) ^ (hash<int>()(k.third) << 1);
+    }
+};
