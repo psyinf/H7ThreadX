@@ -1,13 +1,16 @@
 #include "Runtime.hpp"
 #include "FixedString/FixedString.hpp"
 #include <cstdint>
-#include <main.h>
 #include <tx_api.h>
 
-
-foundation::Thread foundation::Runtime::makeThread(const foundation::Thread::ThreadConfig& config, auto& threadFunction )
+void foundation::Runtime::makeThread(foundation::Thread::ThreadName&& name,
+                                     const foundation::Thread::ThreadConfig& config,
+                                     const Func&                             func)
 {
 
+    threads.emplace(std::piecewise_construct,
+                    std::forward_as_tuple(name),
+                    std::forward_as_tuple(name, config, *func.target<VOID (*)(ULONG entry_input)>()));
     /*
     static Mutex       ledLockPin;
     static auto my_thread_entry = +[](long unsigned int initial) {
@@ -33,7 +36,7 @@ foundation::Thread foundation::Runtime::makeThread(const foundation::Thread::Thr
 
         }
     };
-    static Thread thread = Thread{{"1"}, {}, my_thread_entry};
+    static Thread thread =
     static Thread thread2 = Thread{{"1"}, {}, my_thread_entry2};
     */
 }

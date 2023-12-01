@@ -2,7 +2,8 @@
 #include "Thread.hpp"
 #include <array>
 #include <cstdint>
-
+#include <functional>
+#include <unordered_map>
 namespace foundation {
 
 /**
@@ -10,8 +11,11 @@ namespace foundation {
  */
 class Runtime
 {
+    std::unordered_map<Thread::ThreadName, Thread> threads;
+
 public:
-    Thread makeThread(const Thread::ThreadConfig& config, auto& function);
+    using Func = std::function<void(ULONG)>;
+    void makeThread(Thread::ThreadName&& name, const Thread::ThreadConfig& config, const Func& function);
 };
 
 } // namespace foundation

@@ -1,6 +1,6 @@
 #pragma once
+#include "FixedString/FixedString.hpp"
 #include <tx_api.h>
-#include <FixedString/FixedString.hpp>
 
 #include <array>
 
@@ -8,13 +8,11 @@ namespace foundation {
 
 class Thread
 {
-    using ThreadName = fss::fixed_size_str<63>;
     using ThreadStack = std::array<char, 1024>;
-   
- 
 
 public:
-     using ThreadFunction = std::function<void(void)>; 
+    using ThreadName = fss::fixed_size_str<63>;
+    using ThreadFunction = std::function<void(void)>;
 
     struct ThreadConfig
     {
@@ -22,7 +20,7 @@ public:
         std::uint32_t priority{15};
         std::uint32_t preempt_threshold{15};
         std::uint32_t time_slice;
-        bool          auto_start{false};
+        bool          auto_start{true};
     };
 
     Thread(const ThreadName& name, const ThreadConfig cfg, auto& lambda)
@@ -39,6 +37,10 @@ public:
                                     TX_NO_TIME_SLICE, // for now, todo: config
                                     cfg.auto_start ? TX_AUTO_START : TX_DONT_START);
     };
+
+    Thread(const Thread& rhs) = delete;
+
+    Thread(Thread&&) = default;
 
     ~Thread() { tx_thread_delete(&threadControlBlock); }
 
