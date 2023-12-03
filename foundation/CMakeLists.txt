@@ -4,7 +4,6 @@ add_library(${PROJECT_NAME} STATIC)
 
 target_sources(${PROJECT_NAME} 
     PUBLIC
-        Runtime.hpp
         Runtime.cpp
 )
 
@@ -15,7 +14,7 @@ PRIVATE
 
 target_include_directories(
   ${PROJECT_NAME}
-  INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
             $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
