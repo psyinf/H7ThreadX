@@ -115,10 +115,7 @@ VOID tx_application_define(VOID *first_unused_memory)
     status = App_ThreadX_Init(memory_ptr);
     if (status != TX_SUCCESS)
     {
-       Application app({tx_byte_pool_buffer, TX_APP_MEM_POOL_SIZE});
       
-
-       app.getRuntime().makeThread("t2", {}, &thread2_entry);
       
         
        /* USER CODE BEGIN  App_ThreadX_Init_Error */
@@ -129,7 +126,9 @@ VOID tx_application_define(VOID *first_unused_memory)
     }
 
     /* USER CODE BEGIN  App_ThreadX_Init_Success */
+    Application app({tx_byte_pool_buffer, TX_APP_MEM_POOL_SIZE});
 
+    app.getRuntime().makeThread("t2", {}, &thread2_entry);
     /* USER CODE END  App_ThreadX_Init_Success */
 
   }
