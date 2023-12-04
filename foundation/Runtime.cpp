@@ -1,6 +1,7 @@
 #include "Runtime.hpp"
 #include "FixedString/FixedString.hpp"
 #include <cstdint>
+#include <functional>
 #include <tx_api.h>
 
 void foundation::Runtime::makeThread(foundation::Thread::ThreadName&&        name,

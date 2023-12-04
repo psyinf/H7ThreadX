@@ -3,6 +3,8 @@
 #include <tx_api.h>
 
 #include <array>
+#include <cstdint>
+#include <functional>
 
 namespace foundation {
 
