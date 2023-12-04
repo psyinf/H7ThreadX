@@ -22,6 +22,8 @@
 
 #include "app_azure_rtos.h"
 #include "stm32h7xx.h"
+#include "application.hpp"
+#include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -64,6 +66,25 @@ static TX_BYTE_POOL tx_app_byte_pool;
 
 /* USER CODE END PFP */
 
+// FOR DEMO
+static void thread1_entry(ULONG thread_input)
+{
+    while (true)
+    {
+        HAL_GPIO_TogglePin(LED1_RGB_GPIO_Port, LED1_RGB_Pin);
+        tx_thread_sleep(10);
+    }
+}
+
+static void thread2_entry(ULONG thread_input)
+{
+    while (true)
+    {
+        HAL_GPIO_TogglePin(LED3_RGB_GPIO_Port, LED3_RGB_Pin);
+        tx_thread_sleep(10);
+    }
+}
+
 /**
   * @brief  Define the initial system.
   * @param  first_unused_memory : Pointer to the first unused memory
@@ -89,12 +110,15 @@ VOID tx_application_define(VOID *first_unused_memory)
     /* USER CODE BEGIN TX_Byte_Pool_Success */
 
     /* USER CODE END TX_Byte_Pool_Success */
-
+    
     memory_ptr = (VOID *)&tx_app_byte_pool;
     status = App_ThreadX_Init(memory_ptr);
     if (status != TX_SUCCESS)
     {
-      /* USER CODE BEGIN  App_ThreadX_Init_Error */
+      
+      
+        
+       /* USER CODE BEGIN  App_ThreadX_Init_Error */
       while(1)
       {
       }
@@ -102,7 +126,9 @@ VOID tx_application_define(VOID *first_unused_memory)
     }
 
     /* USER CODE BEGIN  App_ThreadX_Init_Success */
+    Application app({tx_byte_pool_buffer, TX_APP_MEM_POOL_SIZE});
 
+    app.getRuntime().makeThread("t2", {}, &thread2_entry);
     /* USER CODE END  App_ThreadX_Init_Success */
 
   }

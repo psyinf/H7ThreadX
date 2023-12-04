@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.20)
-
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 project("H7ThreadX" C CXX ASM)
 
-include(cmake/st-project.cmake)
-
-add_executable(${PROJECT_NAME})
-add_st_target_properties(${PROJECT_NAME})
+add_subdirectory(Config)
+add_subdirectory(foundation)
+add_subdirectory(Middlewares)
+add_subdirectory(Drivers)
+add_subdirectory(Core)
+add_subdirectory(AZURE_RTOS)
