@@ -37,11 +37,7 @@ PUBLIC
 )
 target_include_directories(
     ${PROJECT_NAME} PUBLIC
-
-    "$<$<AND:$<CONFIG:Debug>,$<COMPILE_LANGUAGE:C>>:${PROJECT_SOURCE_DIR}/Inc>"
-    "$<$<AND:$<CONFIG:Debug>,$<COMPILE_LANGUAGE:CXX>>:${PROJECT_SOURCE_DIR}/Inc>"
-    "$<$<AND:$<NOT:$<CONFIG:Debug>>,$<COMPILE_LANGUAGE:C>>:${PROJECT_SOURCE_DIR}/Inc>"
-    "$<$<AND:$<NOT:$<CONFIG:Debug>>,$<COMPILE_LANGUAGE:CXX>>:${PROJECT_SOURCE_DIR}/Inc>"
+    "${PROJECT_SOURCE_DIR}/Inc"
  )
 target_link_libraries(
     ${PROJECT_NAME} PUBLIC
