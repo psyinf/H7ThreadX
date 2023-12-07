@@ -1,6 +1,6 @@
 #pragma once
 
-#include "foundation/Runtime.hpp"
+#include "Runtime.hpp"
 
 #include <span>
 
@@ -10,7 +10,7 @@ class Application
 
 public:
     Application(memory_view&& appMemoryPool)
-      : appMemory(appMemoryPool)
+      : applicationMemory(appMemoryPool)
     {
     }
 
@@ -18,5 +18,5 @@ public:
 
 private:
     foundation::Runtime runtime;
-    memory_view         appMemory;
+    memory_view         applicationMemory;
 };

@@ -1,4 +1,4 @@
-project(App)
+project(Sandbox)
 
 add_executable(${PROJECT_NAME})
 
@@ -21,7 +21,7 @@ set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/App/app_azure_rtos.c PRO
 
 target_sources(
     ${PROJECT_NAME} PRIVATE
-    "App/app_azure_rtos.c"
+    "sandbox.cpp"
 )
 
 add_custom_command(

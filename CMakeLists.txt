@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 project("H7ThreadX" C CXX ASM)
 
@@ -9,3 +9,4 @@ add_subdirectory(Middlewares)
 add_subdirectory(Drivers)
 add_subdirectory(Core)
 add_subdirectory(AZURE_RTOS)
+add_subdirectory(apps)
