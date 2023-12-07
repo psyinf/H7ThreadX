@@ -17,6 +17,15 @@ static TX_BYTE_POOL        tx_app_byte_pool;
 
 #endif
 
+void thread1(ULONG thread_input)
+{
+    while (true)
+    {
+        HAL_GPIO_TogglePin(LED1_RGB_GPIO_Port, LED1_RGB_Pin);
+        tx_thread_sleep(10);
+    }
+}
+
 VOID tx_application_define(VOID* first_unused_memory)
 {
     /* USER CODE BEGIN  tx_application_define_1*/
@@ -36,13 +45,7 @@ VOID tx_application_define(VOID* first_unused_memory)
         /* USER CODE BEGIN  App_ThreadX_Init_Success */
         Application app({tx_byte_pool_buffer, TX_APP_MEM_POOL_SIZE});
 
-        app.getRuntime().makeThread("t2", {}, [](ULONG thread_input) {
-            while (true)
-            {
-                HAL_GPIO_TogglePin(LED1_RGB_GPIO_Port, LED1_RGB_Pin);
-                tx_thread_sleep(10);
-            }
-        });
+        app.getRuntime().makeThread("t2", {}, & thread1);
         /* USER CODE END  App_ThreadX_Init_Success */
     }
 
