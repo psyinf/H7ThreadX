@@ -22,7 +22,7 @@
 
 #include "app_azure_rtos.h"
 #include "stm32h7xx.h"
-#include "application.hpp"
+#include "foundation/Application.hpp"
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
