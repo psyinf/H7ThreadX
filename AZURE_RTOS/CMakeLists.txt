@@ -15,7 +15,7 @@ target_link_options(
     -T "${CMAKE_HOME_DIRECTORY}/STM32H743XIHX_FLASH.ld"
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE foundation Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE foundation Core filex_driver filex)
 
 set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/App/app_azure_rtos.c PROPERTIES LANGUAGE CXX)
 
