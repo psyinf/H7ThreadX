@@ -12,8 +12,18 @@ target_compile_definitions(
 
 target_sources(${PROJECT_NAME}
 PUBLIC
-    "Src/app_threadx.cpp"
+    "Src/adc.c"
+    "Src/app_threadx.c"
+    "Src/dfsdm.c"
+    "Src/eth.c"
+    "Src/fmc.c"
+    "Src/gpio.c"
+    "Src/i2c.c"
+    "Src/ltdc.c"
     "Src/main.c"
+    "Src/quadspi.c"
+    "Src/sai.c"
+    "Src/sdmmc.c"
     "Src/stm32h7xx_hal_msp.c"
     "Src/stm32h7xx_hal_timebase_tim.c"
     "Src/stm32h7xx_it.c"
@@ -21,6 +31,8 @@ PUBLIC
     "Src/sysmem.c"
     "Src/system_stm32h7xx.c"
     "Src/tx_initialize_low_level.S"
+    "Src/usart.c"
+    "Src/usb_otg.c"
     "Startup/startup_stm32h743xihx.s"
 )
 target_include_directories(
