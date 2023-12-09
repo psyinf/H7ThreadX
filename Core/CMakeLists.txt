@@ -41,5 +41,5 @@ target_include_directories(
  )
 target_link_libraries(
     ${PROJECT_NAME} PUBLIC
-    hal CMSIS Config threadx
+    hal threadx
 )

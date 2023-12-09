@@ -193,4 +193,4 @@ target_link_options(
     ${PROJECT_NAME} PRIVATE
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Config)
+#target_link_libraries(${PROJECT_NAME} PRIVATE Config)

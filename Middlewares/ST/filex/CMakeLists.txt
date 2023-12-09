@@ -2,11 +2,6 @@ project(filex)
 
 add_library(${PROJECT_NAME} STATIC)
 
-target_compile_definitions(
-    ${PROJECT_NAME} PRIVATE
-
-)
-
 target_sources(${PROJECT_NAME}
 PUBLIC
     common/drivers/fx_stm32_sd_driver.c
@@ -270,4 +265,4 @@ target_link_options(
     ${PROJECT_NAME} PRIVATE
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Config threadx hal CMSIS filex_driver)
+target_link_libraries(${PROJECT_NAME} PUBLIC filex_driver)

@@ -63,6 +63,6 @@ target_compile_definitions(
     "$<$<CONFIG:Debug>:DEBUG>"
     "STM32H743xx"
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    Config CMSIS
+target_link_libraries(${PROJECT_NAME} PUBLIC
+    CMSIS
 )

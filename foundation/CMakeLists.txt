@@ -9,8 +9,8 @@ target_sources(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME}
-PRIVATE
-    threadx CMSIS hal Config
+PUBLIC
+    hal threadx 
 )
 
 target_include_directories(

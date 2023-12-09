@@ -12,3 +12,4 @@ target_compile_options(
     "-mfpu=fpv5-d16"
     "-mfloat-abi=hard"
 )
+target_link_libraries(${PROJECT_NAME} INTERFACE Config)

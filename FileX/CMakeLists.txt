@@ -26,6 +26,6 @@ target_compile_options(
 
 
 target_link_libraries(${PROJECT_NAME}
-PRIVATE
-    filex threadx hal CMSIS Config
+PUBLIC
+    filex threadx hal
 )
